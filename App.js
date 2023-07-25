@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text,} from 'react-native'
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer } from '@react-navigation/native'
+import Camera from './component/Camera'
+import Lenses from './component/Lenses'
 
-export default function App() {
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
+const App = () => {
+  const Tab = createBottomTabNavigator()
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+        <Tab.Navigator>
+        <Tab.Screen name='Camera' component={Camera} options={{
+          tabBarBadge: 5,
+        }}/>
+        <Tab.Screen name='Lenses' component={Lenses}/>
+    </Tab.Navigator>
+     
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
